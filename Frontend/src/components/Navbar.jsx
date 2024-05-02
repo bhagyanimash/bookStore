@@ -18,10 +18,10 @@ function Navbar() {
   const navItems = (
     <>
       <li>
-        <a>Home</a>
+        <a href="/">Home</a>
       </li>
       <li>
-        <a>Course</a>
+        <a href="/shop">Shop</a>
       </li>
       <li>
         <a>Contact</a>
