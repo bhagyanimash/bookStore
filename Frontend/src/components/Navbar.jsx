@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 function Navbar() {
+  
+  
   const [sticky, setSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -9,6 +11,15 @@ function Navbar() {
       } else {
         setSticky(false);
       }
+      if(theme==="dark"){
+        element.classList.add("dark");
+        localStorage.setItem("theme","dark");
+        document.body.classList.add("dark");
+        }else{
+          element.classList.remove("dark");
+          localStorage.setItem("theme","light");
+          document.body.classList.remove("dark");
+        }
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -50,7 +61,7 @@ function Navbar() {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
+                  className="w-5 h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -72,15 +83,15 @@ function Navbar() {
             </div>
             <a className="text-xl font-bold cursor-pointer">Nimo Books</a>
           </div>
-          <div className="navbar-end space-x-3">
-            <div className="navbar-center hidden lg:flex">
-              <ul className="menu menu-horizontal px-1">{navItems}</ul>
+          <div className="space-x-3 navbar-end">
+            <div className="hidden navbar-center lg:flex">
+              <ul className="px-1 menu menu-horizontal">{navItems}</ul>
             </div>
             <div className="hidden md:block">
-              <label className="px-3 py-1 border rounded-md flex items-center gap-2">
+              <label className="flex items-center gap-2 px-3 py-1 border rounded-md">
                 <input
                   type="text"
-                  className="grow outline-none"
+                  className="outline-none grow dark:bg-slate-900 dark:text-white"
                   placeholder="Search"
                 />
                 <svg
@@ -98,7 +109,7 @@ function Navbar() {
               </label>
             </div>
             <div className="hidden md:block">
-              <label className="flex cursor-pointer gap-2">
+              <label className="flex gap-2 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -134,9 +145,12 @@ function Navbar() {
               </label>
             </div>
             <div>
-              <a className="bg-black text-white px-3 py-1 rounded-md hover:bg-slate-800 duration-300 cursor-pointer">
+              <a className="px-3 py-1 text-white duration-300 bg-black rounded-md cursor-pointer hover:bg-slate-800"
+                onClick={()=>document.getElementById("my_modal_3").showModal()}>
+                
                 Login
               </a>
+              <Login/>
             </div>
           </div>
         </div>
