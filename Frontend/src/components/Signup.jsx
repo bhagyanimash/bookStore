@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Login from "./Login";
+import {useForm} from "react-hook-form";
 
 function Signup() {
   return (
@@ -7,7 +9,7 @@ function Signup() {
     <div id="my_modal_3" className="w-[600px]">
 <div className="modal-box">
 
-  <form method="dialog">
+  <form onSubmit={handleSubmit(onSubmit)}>
     {/* if there is a button, it will close the modal */}
     <button className="absolute btn-sm btn-circle btn-ghost right-2 top-2">Close</button>
   </form>
@@ -17,7 +19,14 @@ function Signup() {
     <span>Name</span>
     <input type="text" 
     placeholder="Enter your full name" 
-    className="px-3 border rounded outline-none w-80-md"/>
+    className="px-3 border rounded outline-none w-80-md"
+    {...register("email", { required: true })}/>
+    <br/>
+        {errors.name && (
+        <span className="text-sm text-red-500">
+          This field is required
+          </span>
+        )}
   </div>
    {/* Email*/}
    <div className="mt-4 space-y-2">
@@ -25,14 +34,30 @@ function Signup() {
     <input type="email" 
     placeholder="Enter your email" 
     className="px-3 py-1 border rounded outline-none w-80-md"/>
-  </div>
+  
+  <br/>
+        {errors.email && (
+        <span className="text-sm text-red-500">
+          This field is required
+          </span>
+        )}
+      </div>  
   {/*password*/}
   <div className="mt-4 space-y-2">
     <span>Password</span>
+    <br/>
     <input 
-    type="email" 
+    type="text" 
     placeholder="Enter your password" 
-    className="px-3 border rounded outline-none w-80-md"/>
+    className="px-3 border rounded outline-none w-80-md"
+    {...register("email", { required: true })}
+    />
+  <br/>
+        {errors.password &&( 
+        <span className="text-sm text-red-500">
+          This field is required
+          </span>
+        )}
   </div>
   {/*button*/}
   <div className="flex justify-around mt-4">
