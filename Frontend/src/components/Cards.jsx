@@ -4,20 +4,20 @@ function Cards({ item }) {
   console.log(item);
   return (
     <>
-      <div className="mt-4 mb-4 p-3">
-        <div className="card w-92 bg-base-100 shadow-xl">
+      <div className="p-3 mt-4 mb-4">
+        <div className="shadow-xl card w-92 bg-base-100">
           <figure>
             <img src={item.image} alt="Shoes" />
           </figure>
           <div className="card-body">
             <h2 className="card-title">
               {item.name}
-              <div className="badge bg-green-500 text-white">
+              <div className="text-white bg-green-500 badge">
                 {item.category}
               </div>
             </h2>
             <p>{item.title}</p>
-            <div className="card-actions justify-between">
+            <div className="justify-between card-actions">
               <div className="badge badge-outline">${item.price}</div>
               <div className="cursor-pointer px-2 py-1 rounded-full border-[2px] hover:bg-green-500 hover:text-white duration-200">
                 Buy Now
