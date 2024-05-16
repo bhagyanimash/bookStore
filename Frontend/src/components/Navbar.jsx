@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from "react";
 
 function Navbar() {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
+  const element = document.documentElement;
   
-  
+  useEffect(() => {
+    if (theme === "dark") {
+      element.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      document.body.classList.add("dark");
+    } else {
+      element.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      document.body.classList.remove("dark");
+    }
+  }, [theme]);
+
   const [sticky, setSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -11,21 +24,13 @@ function Navbar() {
       } else {
         setSticky(false);
       }
-      if(theme==="dark"){
-        element.classList.add("dark");
-        localStorage.setItem("theme","dark");
-        document.body.classList.add("dark");
-        }else{
-          element.classList.remove("dark");
-          localStorage.setItem("theme","light");
-          document.body.classList.remove("dark");
-        }
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const navItems = (
     <>
       <li>
@@ -42,6 +47,7 @@ function Navbar() {
       </li>
     </>
   );
+
   return (
     <>
       <div
@@ -91,7 +97,7 @@ function Navbar() {
               <label className="flex items-center gap-2 px-3 py-1 border rounded-md">
                 <input
                   type="text"
-                  className="outline-none grow dark:bg-slate-900 dark:text-white"
+                  className="outline-none grow"
                   placeholder="Search"
                 />
                 <svg
@@ -108,6 +114,7 @@ function Navbar() {
                 </svg>
               </label>
             </div>
+            
             <div className="hidden md:block">
               <label className="flex gap-2 cursor-pointer">
                 <svg
@@ -120,6 +127,7 @@ function Navbar() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 >
                   <circle cx="12" cy="12" r="5" />
                   <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
@@ -139,18 +147,16 @@ function Navbar() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 >
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
               </label>
             </div>
             <div>
-              <a className="px-3 py-1 text-white duration-300 bg-black rounded-md cursor-pointer hover:bg-slate-800"
-                onClick={()=>document.getElementById("my_modal_3").showModal()}>
-                
+              <a className="px-3 py-1 text-white duration-300 bg-black rounded-md cursor-pointer hover:bg-slate-800">
                 Login
               </a>
-              <Login/>
             </div>
           </div>
         </div>
