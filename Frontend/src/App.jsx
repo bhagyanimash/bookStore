@@ -1,18 +1,23 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 import Home from "./home/Home";
 import Shop from "./components/Shop";
-import { Route, Routes } from "react-router-dom";
+import Signup from "./components/Signup"; 
+import Login from "./components/Login";
+
+
 function App() {
   return (
-    <>
-      {/* <Home />
-      <Shop /> */}
-      <div className="dark:bg-slate-900 dark:text-white"></div>
+
+    <div className="dark:bg-slate-900 dark:text-white">
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="/Login" element={<Login />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
