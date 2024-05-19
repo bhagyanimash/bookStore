@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 function Navbar() {
+
   const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
   const element = document.documentElement;
   
+
   useEffect(() => {
     if (theme === "dark") {
       element.classList.add("dark");
@@ -19,12 +21,9 @@ function Navbar() {
   const [sticky, setSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setSticky(true);
-      } else {
-        setSticky(false);
-      }
+      setSticky(window.scrollY > 0);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -49,6 +48,7 @@ function Navbar() {
   );
 
   return (
+
     <>
       <div
         className={` max-w-screen-2xl container mx-auto md:px-20 px-4 dark:bg-slate-800 dark:text-white fixed top-0 left-0 right-0 z-50 ${
@@ -83,12 +83,16 @@ function Navbar() {
               <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+
               >
-                {navItems}
-              </ul>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
             </div>
-            <a className="text-xl font-bold cursor-pointer">Nimo Books</a>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52">
+              {navItems}
+            </ul>
           </div>
+
           <div className="space-x-3 navbar-end">
             <div className="hidden navbar-center lg:flex">
               <ul className="px-1 menu menu-horizontal">{navItems}</ul>
@@ -158,10 +162,11 @@ function Navbar() {
                 Login
               </a>
             </div>
+
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
